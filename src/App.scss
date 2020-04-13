@@ -1,0 +1,43 @@
+@import "antd-custom-styles.scss";
+
+body {
+  overflow: hidden;
+}
+.App {
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  font-family: "proxima-nova";
+  position: fixed;
+}
+.toggle-switch__tooltip--invisible {
+  display: none;
+}
+form {
+  font-size: 14px;
+}
+.error-input {
+  border: 1px solid #d01717 !important;
+}
+.clickable {
+  cursor: pointer;
+}
+a {
+  color: rgba(8, 84, 179, 1);
+  cursor: pointer;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-icon {
+  font-size: 24px;
+  margin-right: 15px;
+  position: relative;
+  top: 10px;
+}
