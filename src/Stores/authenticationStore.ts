@@ -1,11 +1,12 @@
 import { observable, action } from "mobx";
 import axios from "axios";
 import { createContext } from "react";
+import { Auth } from "aws-amplify";
 interface TwoFactorAuthData {
   email: string;
   password: string;
 }
-class GlobalDataStore {
+class AuthenticationStore {
   @observable loadingState: boolean = false;
   @observable userEmail: string = "";
   @observable twoFactorAuthData: TwoFactorAuthData = {
@@ -19,17 +20,15 @@ class GlobalDataStore {
   @action async signInAction(email: string, password: string) {
     try {
       this.twoFactorAuthData = { email: "", password: "" };
-      const response = await axios.post(`/0.1/auth/login`, {
-        email,
-        password,
-      });
+      const response = await Auth.signIn(email, password);
       let { data } = response;
-      if (data.two_factor_enabled) {
+      if (data) {
         this.twoFactorAuthData = { email, password };
       }
-      return data;
+      return response;
     } catch (err) {
       this.errors.signIn_form = ["Wrong email or password."];
+      return false;
     }
   }
   @action async verifyOtpAction(token: string) {
@@ -43,19 +42,17 @@ class GlobalDataStore {
   }
   @action async registrationAction(email: string, password: string) {
     try {
-      await axios.post(`/0.1/auth/register`, {
-        email,
-        password,
+      await Auth.signUp({
+        username: email,
+        password: password,
       });
       this.userEmail = email;
       return true;
     } catch (err) {
-      if (err.response.data.email) {
-        this.errors.signUp_form_email = err.response.data.email;
-      }
-      if (err.response.data.password) {
-        this.errors.signUp_form_password = err.response.data.password;
-      }
+      this.errors.signUp_form_password = [err.message];
+      // if (err.code && err.code === "InvalidPasswordException") {
+      //   this.errors.signUp_form_password = [err.message];
+      // }
     }
   }
   @action async activateAccount(token: string) {
@@ -68,9 +65,7 @@ class GlobalDataStore {
   }
   @action async resetPasswordAction(email: string) {
     try {
-      await axios.post(`/0.1/auth/password/reset`, {
-        email,
-      });
+      await Auth.forgotPassword(email);
       this.userEmail = email;
       return true;
     } catch (err) {
@@ -79,15 +74,9 @@ class GlobalDataStore {
       }
     }
   }
-  @action async setupNewPasswordAction(
-    uid: string,
-    token: string,
-    password: string
-  ) {
+  @action async setupNewPasswordAction(code: string, password: string) {
     try {
-      await axios.post(`/0.1/auth/password/reset/${uid}/${token}`, {
-        password,
-      });
+      await Auth.forgotPasswordSubmit(this.userEmail, code, password);
       return true;
     } catch (err) {
       if (err.response.data.password) {
@@ -98,6 +87,24 @@ class GlobalDataStore {
       }
     }
   }
+
+  @action async logoutAction() {
+    try {
+      const response = await Auth.signOut();
+      return response;
+    } catch (err) {}
+  }
+
+  @action async getAuthData() {
+    try {
+      await Auth.currentAuthenticatedUser({
+        bypassCache: false,
+      });
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
 }
-export const globalDataStore = new GlobalDataStore();
-export const GlobalDataStoreContext = createContext(globalDataStore);
+export const authenticationStore = new AuthenticationStore();
+export const AuthenticationStoreContext = createContext(authenticationStore);

@@ -9,16 +9,17 @@ import {
   PageLogoHeader,
   LoadingStateWrapper,
   SpanLink,
+  NavLogo,
 } from "style";
-import { GlobalDataStoreContext } from "Stores/globalDataStore";
+import { AuthenticationStoreContext } from "Stores/authenticationStore";
 import { ReactComponent as MailIcon } from "Assets/Icons/email-verfiied-icon.svg";
 import { ReactComponent as ErrorIcon } from "Assets/Icons/error-icon.svg";
-import { ReactComponent as UpvestLogoIcon } from "Assets/Icons/upvest-logo-blue.svg";
+import compaLogo from "Assets/Icons/compa-logo-original.png";
 import { useHistory, useLocation, Link } from "react-router-dom";
 import { Button, Spin } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
 export const SignUpComplete = observer(() => {
-  const globalStore = useContext(GlobalDataStoreContext);
+  const globalStore = useContext(AuthenticationStoreContext);
   const history = useHistory();
   let location = useLocation();
   const [loading, toggleLoadingState] = useState(true);
@@ -34,10 +35,11 @@ export const SignUpComplete = observer(() => {
   return (
     <div>
       <PageLogoHeader>
-        <UpvestLogoIcon
-          className="clickable"
+        <NavLogo
+          src={compaLogo}
+          alt=""
           onClick={() => {
-            history.push("/");
+            history.push("/sign-in");
           }}
         />
       </PageLogoHeader>
@@ -60,7 +62,7 @@ export const SignUpComplete = observer(() => {
                 <Button
                   type="primary"
                   onClick={() => {
-                    history.push("/");
+                    history.push("/sign-in");
                   }}
                 >
                   Go to login <ArrowRightOutlined />
@@ -71,7 +73,7 @@ export const SignUpComplete = observer(() => {
                 <ErrorIcon />
                 <BoldHeader>
                   Opps! An error has occured please try again or{" "}
-                  <Link to="/">
+                  <Link to="/sign-in">
                     <SpanLink>sign in</SpanLink>
                   </Link>
                 </BoldHeader>

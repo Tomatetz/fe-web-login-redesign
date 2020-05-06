@@ -10,22 +10,22 @@ import {
   InputPostfix,
   InputLabel,
   AlignRight,
+  NavLogo,
 } from "style";
-import { GlobalDataStoreContext } from "Stores/globalDataStore";
-import { ReactComponent as UpvestLogoIcon } from "Assets/Icons/upvest-logo-blue.svg";
+import { AuthenticationStoreContext } from "Stores/authenticationStore";
+import compaLogo from "Assets/Icons/compa-logo-original.png";
 import { useHistory, useLocation } from "react-router-dom";
 import { Input, Button } from "antd";
 export const NewPasswordForm = observer(() => {
-  const globalStore = useContext(GlobalDataStoreContext);
+  const globalStore = useContext(AuthenticationStoreContext);
   const history = useHistory();
-  let location = useLocation();
-  const token = new URLSearchParams(location.search).get("token");
-  const uid = new URLSearchParams(location.search).get("uid");
+
   useEffect(() => {
     globalStore.clearErrors();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [resetPasswordFormValue, setFormValue] = useState({
+    code: "",
     password: "",
     confirmPassword: "",
   });
@@ -33,10 +33,11 @@ export const NewPasswordForm = observer(() => {
   return (
     <div>
       <PageLogoHeader>
-        <UpvestLogoIcon
-          className="clickable"
+        <NavLogo
+          src={compaLogo}
+          alt=""
           onClick={() => {
-            history.push("/");
+            history.push("/sign-in");
           }}
         />
       </PageLogoHeader>
@@ -57,8 +58,7 @@ export const NewPasswordForm = observer(() => {
               ) {
                 globalStore
                   .setupNewPasswordAction(
-                    uid!,
-                    token!,
+                    resetPasswordFormValue.code,
                     resetPasswordFormValue.password
                   )
                   .then((resp) => {
@@ -73,6 +73,19 @@ export const NewPasswordForm = observer(() => {
               }
             }}
           >
+            <InputLabel>Verification code</InputLabel>
+            <Input
+              className={errors.resetPassword_form_code! && "error-input"}
+              value={resetPasswordFormValue.code}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                delete errors.resetPassword_form_code;
+                setFormValue({
+                  ...resetPasswordFormValue,
+                  ...{ code: e.target.value },
+                });
+              }}
+            />
+            <Spacer />
             <InputLabel>New password</InputLabel>
             <Input.Password
               className={errors.resetPassword_form_password! && "error-input"}
@@ -91,7 +104,7 @@ export const NewPasswordForm = observer(() => {
               </ErrorLabel>
             )}
             <InputPostfix>
-              Use 10 or more characters with a mix of letters and numbers.
+              Use 8 or more characters with a mix of letters and numbers.
             </InputPostfix>
             <InputLabel>Confirm password</InputLabel>
             <Input.Password

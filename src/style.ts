@@ -67,7 +67,7 @@ export const SubTitleDetails = styled.header`
 export const ExternalLink = styled.a`
   font-size: 14px;
   font-weight: 400;
-  color: rgba(8, 84, 179, 1);
+  color: #fe3f43;
   cursor: pointer;
   text-decoration: none;
   &:hover {
@@ -190,7 +190,7 @@ export const ContentFooter = styled.div`
   font-size: 12px;
   margin: 0 auto;
   padding: 0 24px;
-  height: 30px;
+  height: 20px;
   margin-bottom: 20px;
 `;
 
@@ -202,7 +202,7 @@ export const LoadingStateWrapper = styled.div`
 export const InternalLink = styled.div`
   font-size: 14px;
   font-weight: 400;
-  color: rgba(8, 84, 179, 1);
+  color: #fe3f43;
   cursor: pointer;
   text-decoration: none;
   &:hover {
@@ -212,7 +212,7 @@ export const InternalLink = styled.div`
 
 export const SpanLink = styled.span`
   font-weight: 400;
-  color: rgba(8, 84, 179, 1);
+  color: #fe3f43;
   cursor: pointer;
   text-decoration: none;
   &:hover {
@@ -250,4 +250,9 @@ export const SidebarFooter = styled.div`
 `;
 export const Flex = styled.div`
   display: flex;
+`;
+
+export const NavLogo = styled.img`
+  height: 50px;
+  cursor: pointer;
 `;

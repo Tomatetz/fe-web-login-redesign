@@ -9,16 +9,17 @@ import {
   PageLogoHeader,
   InternalLink,
   SpacerXSmall,
+  NavLogo,
 } from "style";
-import { GlobalDataStoreContext } from "Stores/globalDataStore";
+import { AuthenticationStoreContext } from "Stores/authenticationStore";
 import { ReactComponent as InboxIcon } from "Assets/Icons/inbox-icon.svg";
-import { ReactComponent as UpvestLogoIcon } from "Assets/Icons/upvest-logo-blue.svg";
 import { useHistory } from "react-router-dom";
+import compaLogo from "Assets/Icons/compa-logo-original.png";
 export const ConfirmPasswordReset = observer(() => {
-  const globalStore = useContext(GlobalDataStoreContext);
+  const globalStore = useContext(AuthenticationStoreContext);
   const history = useHistory();
   useEffect(() => {
-    if (!globalStore.userEmail) history.push("/");
+    if (!globalStore.userEmail) history.push("/sign-in");
     return () => {
       globalStore.userEmail = "";
     };
@@ -27,10 +28,11 @@ export const ConfirmPasswordReset = observer(() => {
   return (
     <div>
       <PageLogoHeader>
-        <UpvestLogoIcon
-          className="clickable"
+        <NavLogo
+          src={compaLogo}
+          alt=""
           onClick={() => {
-            history.push("/");
+            history.push("/sign-in");
           }}
         />
       </PageLogoHeader>

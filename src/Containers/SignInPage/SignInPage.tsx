@@ -13,11 +13,11 @@ import {
   SpanLink,
 } from "style";
 import { Input, Button } from "antd";
-import { GlobalDataStoreContext } from "Stores/globalDataStore";
+import { AuthenticationStoreContext } from "Stores/authenticationStore";
 import { useHistory, Link } from "react-router-dom";
 import { FooterCaption } from "Components/Sidebar";
 export const SignInPage = observer(() => {
-  const globalStore = useContext(GlobalDataStoreContext);
+  const globalStore = useContext(AuthenticationStoreContext);
   const history = useHistory();
   useEffect(() => {
     globalStore.clearErrors();
@@ -49,10 +49,8 @@ export const SignInPage = observer(() => {
               globalStore
                 .signInAction(signInFormValue.email, signInFormValue.password)
                 .then((response) => {
-                  if (response.two_factor_enabled) {
-                    history.push("/verify-otp");
-                  } else {
-                    debugger;
+                  if (response) {
+                    history.push("/");
                   }
                 });
             }}

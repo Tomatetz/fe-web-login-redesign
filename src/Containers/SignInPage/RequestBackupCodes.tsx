@@ -15,13 +15,13 @@ import {
   SpanLink,
 } from "style";
 import { Input, Button } from "antd";
-import { GlobalDataStoreContext } from "Stores/globalDataStore";
+import { AuthenticationStoreContext } from "Stores/authenticationStore";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { urlList } from "Assets/Constants/urls";
 import { FooterCaption } from "Components/Sidebar";
 import { Link } from "react-router-dom";
 export const RequestBackupCodes = observer(() => {
-  const globalStore = useContext(GlobalDataStoreContext);
+  const globalStore = useContext(AuthenticationStoreContext);
   useEffect(() => {
     globalStore.clearErrors();
     // eslint-disable-next-line react-hooks/exhaustive-deps

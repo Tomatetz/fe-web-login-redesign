@@ -15,12 +15,12 @@ import {
   SpanLink,
 } from "style";
 import { Input, Button } from "antd";
-import { GlobalDataStoreContext } from "Stores/globalDataStore";
+import { AuthenticationStoreContext } from "Stores/authenticationStore";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useHistory, Link } from "react-router-dom";
 import { FooterCaption } from "Components/Sidebar";
 export const ResetPassword = observer(() => {
-  const globalStore = useContext(GlobalDataStoreContext);
+  const globalStore = useContext(AuthenticationStoreContext);
   const history = useHistory();
   useEffect(() => {
     globalStore.clearErrors();
@@ -42,7 +42,7 @@ export const ResetPassword = observer(() => {
           </Link>
         </PageNavigationHeader>
         <ContentControls>
-          <Link to="/">
+          <Link to="/sign-in">
             <SpanLink>
               <ArrowLeftOutlined /> Go back
             </SpanLink>
@@ -62,7 +62,8 @@ export const ResetPassword = observer(() => {
                 .resetPasswordAction(resetPasswordFormValue.email)
                 .then((resp) => {
                   if (resp) {
-                    history.push("/confirm-reset");
+                    history.push("/password");
+                    // history.push("/confirm-reset");
                   }
                 });
             }}

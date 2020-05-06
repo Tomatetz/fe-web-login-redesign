@@ -16,10 +16,12 @@ import {
   NewPasswordForm,
   ResetComplete,
 } from "Containers/ResetPassword";
+import { Home } from "Components/Homepage";
 
 export const Routes = () => (
   <>
-    <Route exact path={"/"} component={SignInPage} />
+    <Route exact path={"/"} component={Home} />
+    <Route exact path={"/sign-in"} component={SignInPage} />
     <Route exact path={"/sign-up"} component={RegistrationPage} />
     <Route exact path={"/confirm"} component={ConfirmEmail} />
     <Route path={"/activate"} component={SignUpComplete} />

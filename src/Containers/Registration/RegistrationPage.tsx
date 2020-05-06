@@ -14,11 +14,11 @@ import {
   Flex,
 } from "style";
 import { Input, Button } from "antd";
-import { GlobalDataStoreContext } from "Stores/globalDataStore";
+import { AuthenticationStoreContext } from "Stores/authenticationStore";
 import { useHistory, Link } from "react-router-dom";
 import { FooterCaption } from "Components/Sidebar";
 export const RegistrationPage = observer(() => {
-  const globalStore = useContext(GlobalDataStoreContext);
+  const globalStore = useContext(AuthenticationStoreContext);
   const history = useHistory();
   useEffect(() => {
     globalStore.clearErrors();
@@ -37,7 +37,7 @@ export const RegistrationPage = observer(() => {
       <ContentFlexContainer>
         <PageNavigationHeader>
           Already have an account?{" "}
-          <Link to="/">
+          <Link to="/sign-in">
             <ExternalLink>Log in</ExternalLink>
           </Link>
         </PageNavigationHeader>
@@ -54,7 +54,9 @@ export const RegistrationPage = observer(() => {
                     signUpFormValue.email,
                     signUpFormValue.password
                   )
-                  .then(() => history.push("/confirm"));
+                  .then((isSuccess) => {
+                    if (isSuccess) history.push("/confirm");
+                  });
               } else {
                 errors.signUp_form_confirm_password = [
                   "Re-enter your password confirmation so it matches your password.",
@@ -66,6 +68,7 @@ export const RegistrationPage = observer(() => {
             <Spacer />
             <InputLabel>E-mail</InputLabel>
             <Input
+              autoFocus
               className={errors.signUp_form_email! && "error-input"}
               value={signUpFormValue.email}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,7 +99,7 @@ export const RegistrationPage = observer(() => {
               <ErrorLabel>{errors.signUp_form_password.join(" ")}</ErrorLabel>
             )}
             <InputPostfix>
-              Use 10 or more characters with a mix of letters and numbers.
+              Use 8 or more characters with a mix of letters and numbers.
             </InputPostfix>
             <InputLabel>Confirm password</InputLabel>
             <Input.Password

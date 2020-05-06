@@ -7,9 +7,10 @@ import {
   ContentFlexContainer,
   ContentControls,
   PageLogoHeader,
+  NavLogo,
 } from "style";
 import { ReactComponent as LockIcon } from "Assets/Icons/password-success-icon.svg";
-import { ReactComponent as UpvestLogoIcon } from "Assets/Icons/upvest-logo-blue.svg";
+import compaLogo from "Assets/Icons/compa-logo-original.png";
 import { useHistory } from "react-router-dom";
 import { Button } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
@@ -18,10 +19,11 @@ export const ResetComplete = observer(() => {
   return (
     <div>
       <PageLogoHeader>
-        <UpvestLogoIcon
-          className="clickable"
+        <NavLogo
+          src={compaLogo}
+          alt=""
           onClick={() => {
-            history.push("/");
+            history.push("/sign-in");
           }}
         />
       </PageLogoHeader>
@@ -40,7 +42,7 @@ export const ResetComplete = observer(() => {
               <Button
                 type="primary"
                 onClick={() => {
-                  history.push("/");
+                  history.push("/sign-in");
                 }}
               >
                 Go to login <ArrowRightOutlined />
