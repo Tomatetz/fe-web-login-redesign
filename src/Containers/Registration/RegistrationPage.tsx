@@ -64,8 +64,8 @@ export const RegistrationPage = observer(() => {
               }
             }}
           >
-            <BoldHeader>Register for an Compa account</BoldHeader>
-            <Spacer />
+            {/* <BoldHeader>Register</BoldHeader>
+            <Spacer /> */}
             <InputLabel>E-mail</InputLabel>
             <Input
               autoFocus

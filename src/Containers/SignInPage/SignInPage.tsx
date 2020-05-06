@@ -40,8 +40,8 @@ export const SignInPage = observer(() => {
           </Link>
         </PageNavigationHeader>
         <ContentControls>
-          <BoldHeader>Log in to your Compa Account</BoldHeader>
-          <Spacer />
+          {/* <BoldHeader>Log in to your Account</BoldHeader>
+          <Spacer /> */}
           <form
             onSubmit={(e) => {
               e.preventDefault();

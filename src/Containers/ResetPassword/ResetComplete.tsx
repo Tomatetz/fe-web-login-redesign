@@ -4,13 +4,10 @@ import {
   BoldHeader,
   Spacer,
   AlignCenter,
-  ContentFlexContainer,
+  ContentFlexCenterContainer,
   ContentControls,
-  PageLogoHeader,
-  NavLogo,
 } from "style";
 import { ReactComponent as LockIcon } from "Assets/Icons/password-success-icon.svg";
-import compaLogo from "Assets/Icons/compa-logo-original.png";
 import { useHistory } from "react-router-dom";
 import { Button } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
@@ -18,16 +15,7 @@ export const ResetComplete = observer(() => {
   const history = useHistory();
   return (
     <div>
-      <PageLogoHeader>
-        <NavLogo
-          src={compaLogo}
-          alt=""
-          onClick={() => {
-            history.push("/sign-in");
-          }}
-        />
-      </PageLogoHeader>
-      <ContentFlexContainer>
+      <ContentFlexCenterContainer>
         <ContentControls>
           <AlignCenter>
             <>
@@ -50,7 +38,7 @@ export const ResetComplete = observer(() => {
             </>
           </AlignCenter>
         </ContentControls>
-      </ContentFlexContainer>
+      </ContentFlexCenterContainer>
     </div>
   );
 });

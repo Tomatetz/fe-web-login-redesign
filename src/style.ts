@@ -158,11 +158,19 @@ export const ContentWrapper = styled.div`
 export const ContentFlexContainer = styled.div`
   width: 100%;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
   @media (min-width: 800px) {
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
   }
+`;
+
+export const ContentFlexCenterContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const ContentControls = styled.div`
@@ -192,6 +200,9 @@ export const ContentFooter = styled.div`
   padding: 0 24px;
   height: 20px;
   margin-bottom: 20px;
+  @media (max-width: 800px) {
+    margin-top: auto;
+  }
 `;
 
 export const LoadingStateWrapper = styled.div`

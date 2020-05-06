@@ -4,16 +4,15 @@ import {
   BoldHeader,
   Spacer,
   AlignCenter,
-  ContentFlexContainer,
+  ContentFlexCenterContainer,
   ContentControls,
-  PageLogoHeader,
-  NavLogo,
+  SpanLink,
 } from "style";
 import { AuthenticationStoreContext } from "Stores/authenticationStore";
-import { ReactComponent as InboxIcon } from "Assets/Icons/inbox-icon.svg";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import compaLogo from "Assets/Icons/compa-logo-original.png";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 export const ConfirmEmail = observer(() => {
   const globalStore = useContext(AuthenticationStoreContext);
   const history = useHistory();
@@ -26,19 +25,12 @@ export const ConfirmEmail = observer(() => {
   }, []);
   return (
     <div>
-      <PageLogoHeader>
-        <NavLogo
-          src={compaLogo}
-          alt=""
-          onClick={() => {
-            history.push("/sign-in");
-          }}
-        />
-      </PageLogoHeader>
-      <ContentFlexContainer>
+      <ContentFlexCenterContainer>
         <ContentControls>
           <AlignCenter>
-            <InboxIcon />
+            <div>
+              <img style={{ height: "150px" }} src={compaLogo} alt="" />
+            </div>
             <Spacer />
             <BoldHeader>Confirm your E-mail</BoldHeader>
             <Spacer />
@@ -46,8 +38,14 @@ export const ConfirmEmail = observer(() => {
             <div>{globalStore.userEmail}.</div>
             Activate your account with the link in the message.
           </AlignCenter>
+          <Spacer />
+          <Link to="/sign-in">
+            <SpanLink>
+              <ArrowLeftOutlined /> Go back
+            </SpanLink>
+          </Link>
         </ContentControls>
-      </ContentFlexContainer>
+      </ContentFlexCenterContainer>
     </div>
   );
 });

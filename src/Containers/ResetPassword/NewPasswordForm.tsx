@@ -14,7 +14,7 @@ import {
 } from "style";
 import { AuthenticationStoreContext } from "Stores/authenticationStore";
 import compaLogo from "Assets/Icons/compa-logo-original.png";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Input, Button } from "antd";
 export const NewPasswordForm = observer(() => {
   const globalStore = useContext(AuthenticationStoreContext);
