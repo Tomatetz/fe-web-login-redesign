@@ -18,7 +18,7 @@ import { Input, Button } from "antd";
 import { GlobalDataStoreContext } from "Stores/globalDataStore";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useHistory, Link } from "react-router-dom";
-import { FooterCaption, SidebarComponent } from "Components/Sidebar";
+import { FooterCaption } from "Components/Sidebar";
 export const ResetPassword = observer(() => {
   const globalStore = useContext(GlobalDataStoreContext);
   const history = useHistory();
@@ -33,7 +33,7 @@ export const ResetPassword = observer(() => {
   const { errors } = globalStore;
   return (
     <Flex>
-      <SidebarComponent type="reset-password" />
+      {/* <SidebarComponent type="reset-password" /> */}
       <ContentFlexContainer>
         <PageNavigationHeader>
           Don't have an account?{" "}

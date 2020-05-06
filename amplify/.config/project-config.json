@@ -1,0 +1,17 @@
+{
+    "projectName": "feweblogintest",
+    "version": "3.0",
+    "frontend": "javascript",
+    "javascript": {
+        "framework": "react",
+        "config": {
+            "SourceDir": "src",
+            "DistributionDir": "public",
+            "BuildCommand": "npm build:prod",
+            "StartCommand": "npm start:dev"
+        }
+    },
+    "providers": [
+        "awscloudformation"
+    ]
+}

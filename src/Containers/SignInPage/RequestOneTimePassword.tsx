@@ -17,7 +17,7 @@ import { Input, Button } from "antd";
 import { GlobalDataStoreContext } from "Stores/globalDataStore";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { urlList } from "Assets/Constants/urls";
-import { FooterCaption, SidebarComponent } from "Components/Sidebar";
+import { FooterCaption } from "Components/Sidebar";
 import { Link } from "react-router-dom";
 export const RequestOneTimePassword = observer(() => {
   const globalStore = useContext(GlobalDataStoreContext);
@@ -34,7 +34,7 @@ export const RequestOneTimePassword = observer(() => {
   const { twoFactorAuthenticationCode } = oneTimePasswordFormValue;
   return (
     <Flex>
-      <SidebarComponent />
+      {/* <SidebarComponent /> */}
       <ContentFlexContainer>
         <PageNavigationHeader>
           Don't have an account?{" "}

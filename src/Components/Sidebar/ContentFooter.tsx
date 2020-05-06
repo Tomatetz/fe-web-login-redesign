@@ -1,9 +1,11 @@
 import React from "react";
 import { ContentFooter } from "style";
+
+import compaLogoBlack from "Assets/Icons/compa-black400w.png";
 export const FooterCaption = () => {
   return (
     <ContentFooter>
-      © 2019–present Upvest GmbH. All rights reserved.
+      <img style={{ height: "inherit" }} src={compaLogoBlack} alt="" />
     </ContentFooter>
   );
 };

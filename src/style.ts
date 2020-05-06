@@ -135,8 +135,8 @@ export const PositionAbsolut = styled.div`
 `;
 
 export const PageNavigationHeader = styled.header`
-  padding: 43px 124px 0 124px;
-  text-align: right;
+  text-align: center;
+  margin-top: 20px;
 `;
 
 export const PageLogoHeader = styled.header`
@@ -157,10 +157,10 @@ export const ContentWrapper = styled.div`
 
 export const ContentFlexContainer = styled.div`
   width: 100%;
+  height: 100vh;
   @media (min-width: 800px) {
     display: flex;
     flex-direction: column;
-    height: 100%;
     justify-content: space-between;
   }
 `;
@@ -188,9 +188,10 @@ export const ContentFooter = styled.div`
   align-self: end;
   color: #637381;
   font-size: 12px;
-  padding: 0.5rem;
-  text-align: center;
-  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 30px;
+  margin-bottom: 20px;
 `;
 
 export const LoadingStateWrapper = styled.div`

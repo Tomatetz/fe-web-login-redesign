@@ -16,7 +16,7 @@ import {
 import { Input, Button } from "antd";
 import { GlobalDataStoreContext } from "Stores/globalDataStore";
 import { useHistory, Link } from "react-router-dom";
-import { SidebarComponent, FooterCaption } from "Components/Sidebar";
+import { FooterCaption } from "Components/Sidebar";
 export const RegistrationPage = observer(() => {
   const globalStore = useContext(GlobalDataStoreContext);
   const history = useHistory();
@@ -33,7 +33,7 @@ export const RegistrationPage = observer(() => {
   const { errors } = globalStore;
   return (
     <Flex>
-      <SidebarComponent type="sign-up" />
+      {/* <SidebarComponent type="sign-up" /> */}
       <ContentFlexContainer>
         <PageNavigationHeader>
           Already have an account?{" "}
@@ -62,7 +62,7 @@ export const RegistrationPage = observer(() => {
               }
             }}
           >
-            <BoldHeader>Register for an Upvest account</BoldHeader>
+            <BoldHeader>Register for an Compa account</BoldHeader>
             <Spacer />
             <InputLabel>E-mail</InputLabel>
             <Input

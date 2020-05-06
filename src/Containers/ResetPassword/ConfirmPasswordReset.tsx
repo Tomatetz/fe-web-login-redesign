@@ -52,7 +52,7 @@ export const ConfirmPasswordReset = observer(() => {
             </InternalLink>
             <SpacerXSmall />
             Didn’t receive the email? Check your spam filter for an email from
-            noreply@upvest.co
+            noreply@compa.co
           </AlignCenter>
         </ContentControls>
       </ContentFlexContainer>

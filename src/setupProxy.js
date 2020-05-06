@@ -2,7 +2,7 @@ const proxy = require("http-proxy-middleware");
 
 const { REACT_APP_TARGET } = process.env;
 const TARGET = REACT_APP_TARGET;
-const TARGET1 = "https://login.staging.upvest.io";
+
 if (TARGET) {
   module.exports = (app) => {
     const apiProxyConfig = {
