@@ -18,10 +18,10 @@ import { AuthenticationStoreContext } from "Stores/authenticationStore";
 import { useHistory, Link } from "react-router-dom";
 import { FooterCaption } from "Components/Sidebar";
 export const RegistrationPage = observer(() => {
-  const globalStore = useContext(AuthenticationStoreContext);
+  const authenticationStore = useContext(AuthenticationStoreContext);
   const history = useHistory();
   useEffect(() => {
-    globalStore.clearErrors();
+    authenticationStore.clearErrors();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -30,7 +30,7 @@ export const RegistrationPage = observer(() => {
     password: "",
     confirmPassword: "",
   });
-  const { errors } = globalStore;
+  const { errors } = authenticationStore;
   return (
     <Flex>
       {/* <SidebarComponent type="sign-up" /> */}
@@ -49,7 +49,7 @@ export const RegistrationPage = observer(() => {
               if (
                 signUpFormValue.password === signUpFormValue.confirmPassword
               ) {
-                globalStore
+                authenticationStore
                   .registrationAction(
                     signUpFormValue.email,
                     signUpFormValue.password

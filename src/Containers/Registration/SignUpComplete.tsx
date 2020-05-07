@@ -19,14 +19,14 @@ import { useHistory, useLocation, Link } from "react-router-dom";
 import { Button, Spin } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
 export const SignUpComplete = observer(() => {
-  const globalStore = useContext(AuthenticationStoreContext);
+  const authenticationStore = useContext(AuthenticationStoreContext);
   const history = useHistory();
   let location = useLocation();
   const [loading, toggleLoadingState] = useState(true);
   const [activationSuccess, toggleActivationStatus] = useState(true);
   useEffect(() => {
     const token = new URLSearchParams(location.search).get("token");
-    globalStore.activateAccount(token!).then((resp) => {
+    authenticationStore.activateAccount(token!).then((resp) => {
       toggleActivationStatus(resp);
       toggleLoadingState(false);
     });

@@ -21,16 +21,16 @@ import { urlList } from "Assets/Constants/urls";
 import { FooterCaption } from "Components/Sidebar";
 import { Link } from "react-router-dom";
 export const RequestBackupCodes = observer(() => {
-  const globalStore = useContext(AuthenticationStoreContext);
+  const authenticationStore = useContext(AuthenticationStoreContext);
   useEffect(() => {
-    globalStore.clearErrors();
+    authenticationStore.clearErrors();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [backupCodeFormValue, setFormValue] = useState({
     backupCode: "",
   });
-  const { errors } = globalStore;
+  const { errors } = authenticationStore;
   const { backupCode } = backupCodeFormValue;
   return (
     <Flex>
@@ -59,11 +59,13 @@ export const RequestBackupCodes = observer(() => {
             onSubmit={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              globalStore.verifyOtpAction(backupCode).then((response) => {
-                if (response) {
-                  window.location.href = urlList.APP_URL;
-                }
-              });
+              authenticationStore
+                .verifyOtpAction(backupCode)
+                .then((response) => {
+                  if (response) {
+                    window.location.href = urlList.APP_URL;
+                  }
+                });
             }}
           >
             <InputLabel>Backup Code</InputLabel>

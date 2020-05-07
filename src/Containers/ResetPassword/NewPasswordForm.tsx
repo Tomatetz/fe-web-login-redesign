@@ -17,11 +17,11 @@ import compaLogo from "Assets/Icons/compa-logo-original.png";
 import { useHistory } from "react-router-dom";
 import { Input, Button } from "antd";
 export const NewPasswordForm = observer(() => {
-  const globalStore = useContext(AuthenticationStoreContext);
+  const authenticationStore = useContext(AuthenticationStoreContext);
   const history = useHistory();
 
   useEffect(() => {
-    globalStore.clearErrors();
+    authenticationStore.clearErrors();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [resetPasswordFormValue, setFormValue] = useState({
@@ -29,7 +29,7 @@ export const NewPasswordForm = observer(() => {
     password: "",
     confirmPassword: "",
   });
-  const { errors } = globalStore;
+  const { errors } = authenticationStore;
   return (
     <div>
       <PageLogoHeader>
@@ -56,7 +56,7 @@ export const NewPasswordForm = observer(() => {
                 resetPasswordFormValue.password ===
                 resetPasswordFormValue.confirmPassword
               ) {
-                globalStore
+                authenticationStore
                   .setupNewPasswordAction(
                     resetPasswordFormValue.code,
                     resetPasswordFormValue.password
@@ -85,6 +85,11 @@ export const NewPasswordForm = observer(() => {
                 });
               }}
             />
+            {errors.resetPassword_form_code && (
+              <ErrorLabel>
+                {errors.resetPassword_form_code.join(" ")}
+              </ErrorLabel>
+            )}
             <Spacer />
             <InputLabel>New password</InputLabel>
             <Input.Password

@@ -20,17 +20,17 @@ import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useHistory, Link } from "react-router-dom";
 import { FooterCaption } from "Components/Sidebar";
 export const ResetPassword = observer(() => {
-  const globalStore = useContext(AuthenticationStoreContext);
+  const authenticationStore = useContext(AuthenticationStoreContext);
   const history = useHistory();
   useEffect(() => {
-    globalStore.clearErrors();
+    authenticationStore.clearErrors();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [resetPasswordFormValue, setFormValue] = useState({
     email: "",
   });
-  const { errors } = globalStore;
+  const { errors } = authenticationStore;
   return (
     <Flex>
       {/* <SidebarComponent type="reset-password" /> */}
@@ -58,7 +58,7 @@ export const ResetPassword = observer(() => {
             onSubmit={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              globalStore
+              authenticationStore
                 .resetPasswordAction(resetPasswordFormValue.email)
                 .then((resp) => {
                   if (resp) {

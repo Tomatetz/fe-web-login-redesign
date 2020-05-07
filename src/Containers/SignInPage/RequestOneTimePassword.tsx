@@ -20,17 +20,17 @@ import { urlList } from "Assets/Constants/urls";
 import { FooterCaption } from "Components/Sidebar";
 import { Link } from "react-router-dom";
 export const RequestOneTimePassword = observer(() => {
-  const globalStore = useContext(AuthenticationStoreContext);
+  const authenticationStore = useContext(AuthenticationStoreContext);
 
   useEffect(() => {
-    globalStore.clearErrors();
+    authenticationStore.clearErrors();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [oneTimePasswordFormValue, setFormValue] = useState({
     twoFactorAuthenticationCode: "",
   });
-  const { errors } = globalStore;
+  const { errors } = authenticationStore;
   const { twoFactorAuthenticationCode } = oneTimePasswordFormValue;
   return (
     <Flex>
@@ -55,7 +55,7 @@ export const RequestOneTimePassword = observer(() => {
             onSubmit={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              globalStore
+              authenticationStore
                 .verifyOtpAction(twoFactorAuthenticationCode)
                 .then((response) => {
                   if (response) {

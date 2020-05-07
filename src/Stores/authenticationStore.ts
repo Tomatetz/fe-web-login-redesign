@@ -2,6 +2,7 @@ import { observable, action } from "mobx";
 import axios from "axios";
 import { createContext } from "react";
 import { Auth } from "aws-amplify";
+import { globalStore } from "./globalStore";
 interface TwoFactorAuthData {
   email: string;
   password: string;
@@ -65,25 +66,41 @@ class AuthenticationStore {
   }
   @action async resetPasswordAction(email: string) {
     try {
+      this.clearErrors();
       await Auth.forgotPassword(email);
       this.userEmail = email;
       return true;
     } catch (err) {
-      if (err.response.data.email) {
-        this.errors.resetPassword_form = err.response.data.email;
-      }
+      return true;
     }
   }
   @action async setupNewPasswordAction(code: string, password: string) {
     try {
-      await Auth.forgotPasswordSubmit(this.userEmail, code, password);
+      const usermail = "aleksei@compa.co";
+      // await Auth.forgotPasswordSubmit(this.userEmail, code, password);
+      await Auth.forgotPasswordSubmit(usermail, code, password);
       return true;
     } catch (err) {
-      if (err.response.data.password) {
-        this.errors.resetPassword_form_password = err.response.data.password;
+      console.log(err.code);
+      if (
+        err.code === "UserNotFoundException" ||
+        err.code === "CodeMismatchException"
+      ) {
+        this.errors.resetPassword_form_code = [
+          "Invalid verification code provided, please try again.",
+        ];
       }
-      if (err.response.data.detail) {
-        this.errors.resetPassword_detail = err.response.data.detail;
+      if (err.code === "ExpiredCodeException") {
+        this.errors.resetPassword_form_password = [err.message];
+      }
+      if (
+        err.code === "InvalidPasswordException" ||
+        err.code === "InvalidParameterException"
+      ) {
+        this.errors.resetPassword_form_password = [err.message];
+      }
+      if (err.code === "LimitExceededException") {
+        this.errors.resetPassword_detail = [err.message];
       }
     }
   }
@@ -97,9 +114,11 @@ class AuthenticationStore {
 
   @action async getAuthData() {
     try {
-      await Auth.currentAuthenticatedUser({
+      const resp = await Auth.currentAuthenticatedUser({
         bypassCache: false,
       });
+      const { attributes } = resp;
+      globalStore.userEmail = attributes.email;
       return true;
     } catch (err) {
       return false;

@@ -16,12 +16,12 @@ import { ReactComponent as InboxIcon } from "Assets/Icons/inbox-icon.svg";
 import { useHistory } from "react-router-dom";
 import compaLogo from "Assets/Icons/compa-logo-original.png";
 export const ConfirmPasswordReset = observer(() => {
-  const globalStore = useContext(AuthenticationStoreContext);
+  const authenticationStore = useContext(AuthenticationStoreContext);
   const history = useHistory();
   useEffect(() => {
-    if (!globalStore.userEmail) history.push("/sign-in");
+    if (!authenticationStore.userEmail) history.push("/sign-in");
     return () => {
-      globalStore.userEmail = "";
+      authenticationStore.userEmail = "";
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -47,7 +47,9 @@ export const ConfirmPasswordReset = observer(() => {
             <SpacerXSmall />
             <InternalLink
               onClick={() => {
-                globalStore.resetPasswordAction(globalStore.userEmail);
+                authenticationStore.resetPasswordAction(
+                  authenticationStore.userEmail
+                );
               }}
             >
               Resend email
