@@ -1,15 +1,20 @@
 {
-    "feweblogin": {
+    "dev": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-feweblogintest-feweblogin-91017-authRole",
-            "UnauthRoleArn": "arn:aws:iam::040434044402:role/amplify-feweblogintest-feweblogin-91017-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::040434044402:role/amplify-feweblogintest-feweblogin-91017-authRole",
-            "Region": "eu-west-1",
-            "DeploymentBucketName": "amplify-feweblogintest-feweblogin-91017-deployment",
-            "UnauthRoleName": "amplify-feweblogintest-feweblogin-91017-unauthRole",
-            "StackName": "amplify-feweblogintest-feweblogin-91017",
-            "StackId": "arn:aws:cloudformation:eu-west-1:040434044402:stack/amplify-feweblogintest-feweblogin-91017/a5d23910-8f68-11ea-90a4-02ccbabe1234",
-            "AmplifyAppId": "d355zrisauqmt4"
+            "AuthRoleName": "amplify-compaauth-dev-92932-authRole",
+            "UnauthRoleArn": "arn:aws:iam::828019962055:role/amplify-compaauth-dev-92932-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::828019962055:role/amplify-compaauth-dev-92932-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "amplify-compaauth-dev-92932-deployment",
+            "UnauthRoleName": "amplify-compaauth-dev-92932-unauthRole",
+            "StackName": "amplify-compaauth-dev-92932",
+            "StackId": "arn:aws:cloudformation:eu-central-1:828019962055:stack/amplify-compaauth-dev-92932/800a4fc0-9034-11ea-be73-0a75b60f3c60",
+            "AmplifyAppId": "d2fgtepfl7ur5x"
+        },
+        "categories": {
+            "auth": {
+                "compaauth2968941e": {}
+            }
         }
     }
 }

@@ -1,1 +1,10 @@
-{}
+{
+	"auth": {
+		"compaauth2968941e": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}

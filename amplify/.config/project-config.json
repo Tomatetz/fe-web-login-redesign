@@ -1,5 +1,5 @@
 {
-    "projectName": "feweblogintest",
+    "projectName": "compaauth",
     "version": "3.0",
     "frontend": "javascript",
     "javascript": {
@@ -8,7 +8,7 @@
             "SourceDir": "src",
             "DistributionDir": "public",
             "BuildCommand": "npm build:prod",
-            "StartCommand": "npm start:dev"
+            "StartCommand": "npm start"
         }
     },
     "providers": [
