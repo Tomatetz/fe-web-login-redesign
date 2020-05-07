@@ -51,9 +51,6 @@ class AuthenticationStore {
       return true;
     } catch (err) {
       this.errors.signUp_form_password = [err.message];
-      // if (err.code && err.code === "InvalidPasswordException") {
-      //   this.errors.signUp_form_password = [err.message];
-      // }
     }
   }
   @action async activateAccount(token: string) {
@@ -76,9 +73,7 @@ class AuthenticationStore {
   }
   @action async setupNewPasswordAction(code: string, password: string) {
     try {
-      const usermail = "aleksei@compa.co";
-      // await Auth.forgotPasswordSubmit(this.userEmail, code, password);
-      await Auth.forgotPasswordSubmit(usermail, code, password);
+      await Auth.forgotPasswordSubmit(this.userEmail, code, password);
       return true;
     } catch (err) {
       console.log(err.code);
